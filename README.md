@@ -2,8 +2,6 @@
 
 Use this when you have a function that creates and returns a child process, and you want that process to be killed and recreated on successive calls so that there is only one process.
 
-Takes a function that creates and returns a child process.
-
 ## install
 
 ```sh

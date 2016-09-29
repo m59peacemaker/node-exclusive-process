@@ -1,6 +1,6 @@
 {
   "name": "only-one-process",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Use this when you have a function that creates and returns a child process, and you want that process to be killed and recreated on successive calls so that there is only one process.",
   "main": "index.js",
   "scripts": {
