@@ -1,9 +1,9 @@
 function onlyOneProcess (fn) {
   let p
-  return () => {
+  return (...args) => {
     p && p.kill()
     p = (() => {
-      const _p = fn().on('close', () => {
+      const _p = fn(...args).on('close', () => {
         if (_p === p) {
           p = undefined
         }

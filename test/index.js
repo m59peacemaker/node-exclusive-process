@@ -55,3 +55,13 @@ test('returns new process', t => {
   t.true(b instanceof ChildProcess, 'return value is a ChildProcess')
   t.notDeepEqual(a, b, 'a different process was returned on the next call')
 })
+
+test('arguments pass through', t => {
+  t.plan(1)
+  const fn = (a) => spawn ('node', ['-e', `console.log('${a}')`])
+    .stdout.on('data', data => {
+      t.equal(String(data), 'abc\n')
+    })
+  const onlyOneFn = onlyOneProcess(fn)
+  onlyOneFn('abc')
+})

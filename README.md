@@ -25,6 +25,6 @@ onlyOneProcess() // kill running process and start again
 ### onlyOneProcess(fn)
 
 - `fn: function` a function that creates and returns a child process
-- **returns**: `function` a function that calls `fn` after killing the process from the previous call
+- **returns**: `function` a function that calls `fn` after killing the process from the previous call. Arguments are passed through to `fn`.
 
 
