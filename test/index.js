@@ -1,6 +1,6 @@
 const test = require('tape')
 const onlyOneProcess = require('../')
-const {spawn} = require('child_process')
+const {spawn, ChildProcess} = require('child_process')
 
 const code = `
   let c = 0
@@ -41,4 +41,17 @@ test('kills old process', t => {
   }
   const onlyOneFn = onlyOneProcess(fn)
   onlyOneFn()
+})
+
+test('returns new process', t => {
+  t.plan(3)
+  const fn = () => spawn('node', ['-e', code])
+  const onlyOneFn = onlyOneProcess(fn)
+  const a = onlyOneFn()
+  const b = onlyOneFn()
+  a.kill()
+  b.kill()
+  t.true(a instanceof ChildProcess, 'return value is a ChildProcess')
+  t.true(b instanceof ChildProcess, 'return value is a ChildProcess')
+  t.notDeepEqual(a, b, 'a different process was returned on the next call')
 })
