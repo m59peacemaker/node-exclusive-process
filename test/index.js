@@ -1,5 +1,5 @@
 const test = require('tape')
-const onlyOneProcess = require('../')
+const exclusiveProcess = require('../')
 const {spawn, ChildProcess} = require('child_process')
 
 const code = `
@@ -34,21 +34,21 @@ test('kills old process', t => {
       if (t.assertCount === 3) {
         p.kill()
       } else {
-        onlyOneFn()
+        exclusiveFn()
       }
     })
     return p
   }
-  const onlyOneFn = onlyOneProcess(fn)
-  onlyOneFn()
+  const exclusiveFn = exclusiveProcess(fn)
+  exclusiveFn()
 })
 
 test('returns new process', t => {
   t.plan(3)
   const fn = () => spawn('node', ['-e', code])
-  const onlyOneFn = onlyOneProcess(fn)
-  const a = onlyOneFn()
-  const b = onlyOneFn()
+  const exclusiveFn = exclusiveProcess(fn)
+  const a = exclusiveFn()
+  const b = exclusiveFn()
   a.kill()
   b.kill()
   t.true(a instanceof ChildProcess, 'return value is a ChildProcess')
@@ -62,6 +62,6 @@ test('arguments pass through', t => {
     .stdout.on('data', data => {
       t.equal(String(data), 'abc\n')
     })
-  const onlyOneFn = onlyOneProcess(fn)
-  onlyOneFn('abc')
+  const exclusiveFn = exclusiveProcess(fn)
+  exclusiveFn('abc')
 })

@@ -1,4 +1,4 @@
-function onlyOneProcess (fn) {
+function exclusiveProcess (fn) {
   let p
   return (...args) => {
     p && p.kill()
@@ -14,4 +14,4 @@ function onlyOneProcess (fn) {
   }
 }
 
-module.exports = onlyOneProcess
+module.exports = exclusiveProcess

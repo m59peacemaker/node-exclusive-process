@@ -1,28 +1,28 @@
-# only-one-process
+# exclusive-process
 
 Use this when you have a function that creates and returns a child process, and you want that process to be killed and recreated on successive calls so that there is only one process.
 
 ## install
 
 ```sh
-npm install only-one-process
+npm install exclusive-process
 ```
 
 ## example
 
 ```js
-const onlyOneProcess = require('only-one-process')
+const exclusiveProcess = require('exclusive-process')
 
 const fn = () => spawn('whatever')
-const onlyOneFn = onlyOneProcess(fn)
+const exclusiveFn = exclusiveProcess(fn)
 
-onlyOneProcess() // start process
-onlyOneProcess() // kill running process and start again
+exclusiveFn() // start process
+exclusiveFn() // kill running process and start again
 ```
 
 ## API
 
-### onlyOneProcess(fn)
+### exclusiveProcess(fn)
 
 - `fn: function` a function that creates and returns a child process
 - **returns**: `function` a function that calls `fn` after killing the process from the previous call. Arguments are passed through to `fn`.
