@@ -1,6 +1,6 @@
 {
   "name": "exclusive-process",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Use this when you have a function that creates and returns a child process, and you want that process to be killed and recreated on successive calls so that there is only one process.",
   "main": "index.js",
   "scripts": {
@@ -27,7 +27,7 @@
     "name": "Johnny Hauser",
     "email": "johnnyhauser@gmail.com"
   },
-  "license": "VOL",
+  "license": "CC0-1.0",
   "devDependencies": {
     "tape": "^4.6.0"
   }
